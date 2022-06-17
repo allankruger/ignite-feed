@@ -30,14 +30,19 @@ export function Post(props) {
           DoctorCare 🚀
         </p>
         <p>
-          👉{" "}<a href="#">jane.design/doctorcare</a>
+          👉 <a href="#">jane.design/doctorcare</a>
         </p>
         <p>
-          <a href="#">#newproject</a>{" "}
-          <a href="#">#nlw</a>{" "}
+          <a href="#">#newproject</a> <a href="#">#nlw</a>{" "}
           <a href="#">#rocketseat</a>
         </p>
       </div>
+
+      <form className={styles.commentForm}>
+        <strong>Leave your feedback</strong>
+        <textarea placeholder="Leave a comment" />
+        <button type="submit">Comment</button>
+      </form>
     </article>
   );
 }
