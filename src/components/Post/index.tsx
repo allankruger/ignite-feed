@@ -15,7 +15,7 @@ interface PostProps {
 }
 
 export function Post({ author, publishedAt, content }: PostProps) {
-  const [comments, setComments] = useState(["Great post! Thanks for sharing."]);
+  const [comments, setComments] = useState(["This comment is set inside the state, that's why it is always here."]);
   const [newCommentText, setNewCommentText] = useState("");
 
   const formattedPublishingDate = format(publishedAt, "LLL do h':'mmbbb");
