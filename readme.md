@@ -6,8 +6,8 @@ A React application made using Vite with Typescript and CSS Modules.
 ## How to run
 
 ```bash
-  yarn -> To install all dependencies
-  yarn dev -> To run the local app server
+  yarn - To install all dependencies
+  yarn dev - To run the local app server
 ```
 
 ## Features
