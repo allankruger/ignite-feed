@@ -1,42 +1,45 @@
+import { format, formatDistanceToNow } from "date-fns";
 import { Avatar } from "../Avatar";
 import { Comment } from "../Comment";
 import styles from "./styles.module.css";
 
-export function Post(props) {
-  const { author, content } = props;
+export function Post({ author, publishedAt, content }) {
+  const formattedPublishingDate = format(publishedAt, "LLL do h':'mmbbb");
+  const publishingDateRelativeToNow = formatDistanceToNow(publishedAt, {
+    addSuffix: true,
+  });
 
   return (
     <article className={styles.post}>
       <header>
         <div className={styles.author}>
-          <Avatar
-            src="https://github.com/allankruger.png"
-          />
+          <Avatar src="https://github.com/allankruger.png" />
           <div className={styles.authorInfo}>
-            <strong>Allan Krüger</strong>
-            <span>Web Developer</span>
+            <strong>{author.name}</strong>
+            <span>{author.role}</span>
           </div>
         </div>
 
-        <time title="May 5th at 8:13AM" dateTime="2022-05-11 08:13:30">
-          Published 1h ago
+        <time
+          title={formattedPublishingDate}
+          dateTime={publishedAt.toISOString()}
+        >
+          {publishingDateRelativeToNow}
         </time>
       </header>
 
       <div className={styles.content}>
-        <p>Hey guys 👋</p>
-        <p>
-          Just uploaded another project to my portfolio. It's a project I made
-          during the NLW Return, a Rocketseat event. The project name is
-          DoctorCare 🚀
-        </p>
-        <p>
-          👉 <a href="#">jane.design/doctorcare</a>
-        </p>
-        <p>
-          <a href="#">#newproject</a> <a href="#">#nlw</a>{" "}
-          <a href="#">#rocketseat</a>
-        </p>
+        {content.map((line) => {
+          if (line.type === "paragraph") {
+            return <p>{line.content}</p>;
+          } else if (line.type === "hyperlink") {
+            return (
+              <p>
+                <a href="">{line.content}</a>
+              </p>
+            );
+          }
+        })}
       </div>
 
       <form className={styles.commentForm}>
