@@ -23,3 +23,4 @@ A React application made using Vite with Typescript and CSS Modules.
 
 - Fix keys that are currently using strings
 - Limit 1 like per post
+- Use date-fns on comments too
