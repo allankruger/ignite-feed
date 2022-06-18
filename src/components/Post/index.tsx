@@ -1,10 +1,20 @@
 import { format, formatDistanceToNow } from "date-fns";
-import { useState } from "react";
+import { ChangeEvent, FormEvent, useState } from "react";
 import { Avatar } from "../Avatar";
 import { Comment } from "../Comment";
 import styles from "./styles.module.css";
 
-export function Post({ author, publishedAt, content }) {
+interface PostProps {
+  author: {
+    name: string;
+    role: string;
+    avatarUrl: string;
+  };
+  publishedAt: Date;
+  content: [{ type: "paragraph" | "hyperlink"; content: string }];
+}
+
+export function Post({ author, publishedAt, content }: PostProps) {
   const [comments, setComments] = useState(["Great post! Thanks for sharing."]);
   const [newCommentText, setNewCommentText] = useState("");
 
@@ -13,17 +23,17 @@ export function Post({ author, publishedAt, content }) {
     addSuffix: true,
   });
 
-  function handleCreateNewComment() {
+  function handleCreateNewComment(event: FormEvent) {
     event.preventDefault();
     setComments([...comments, newCommentText]);
     setNewCommentText("");
   }
 
-  function handleNewCommentChange() {
+  function handleNewCommentChange(event: ChangeEvent<HTMLTextAreaElement>) {
     setNewCommentText(event.target.value);
   }
 
-  function deleteComment(commentToDelete) {
+  function deleteComment(commentToDelete: string) {
     const newComments = comments.filter((comment) => {
       return comment !== commentToDelete;
     });
