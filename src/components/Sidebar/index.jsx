@@ -1,4 +1,5 @@
 import { Pencil } from "phosphor-react";
+import { Avatar } from "../Avatar";
 import styles from "./styles.module.css";
 
 export function Sidebar() {
@@ -10,17 +11,14 @@ export function Sidebar() {
       />
 
       <div className={styles.profile}>
-        <img
-          className={styles.avatar}
-          src="https://github.com/allankruger.png"
-        />
+        <Avatar src="https://github.com/allankruger.png" />
         <strong>Allan Krüger</strong>
         <span>Web Developer</span>
       </div>
 
       <footer>
         <a className={styles.button} href="#">
-          <Pencil size={20}/>
+          <Pencil size={20} />
           Edit profile
         </a>
       </footer>
