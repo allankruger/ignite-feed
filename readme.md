@@ -19,9 +19,6 @@ https://ignite-feed-sable.vercel.app/
 - Delete a comment
 - Like a comment multiple times
 
-## Improvements
-- To do
-
 ## To do
 
 - Fix keys that are currently using strings
