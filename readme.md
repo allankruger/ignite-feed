@@ -24,3 +24,9 @@ https://ignite-feed-sable.vercel.app/
 - Fix keys that are currently using strings
 - Limit 1 like per post
 - Use date-fns on comments too
+
+## 🔗 Links
+
+[![linkedin](https://img.shields.io/badge/LinkedIn-0077B5?style=for-the-badge&logo=linkedin&logoColor=white)](https://www.linkedin.com/in/allan-kr%C3%BCger-4a8b03b5/)
+[![instagram](https://img.shields.io/badge/Instagram-E4405F?style=for-the-badge&logo=instagram&logoColor=white)](https://www.instagram.com/allanfkruger)
+
