@@ -4,14 +4,14 @@ import { Avatar } from "../Avatar";
 import { Comment } from "../Comment";
 import styles from "./styles.module.css";
 
-interface PostProps {
+export interface PostProps {
   author: {
     name: string;
     role: string;
     avatarUrl: string;
   };
   publishedAt: Date;
-  content: [{ type: "paragraph" | "hyperlink"; content: string }];
+  content: { type: "paragraph" | "hyperlink"; content: string }[];
 }
 
 export function Post({ author, publishedAt, content }: PostProps) {
