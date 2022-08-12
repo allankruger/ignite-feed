@@ -3,6 +3,7 @@
 
 A React application made using Vite with Typescript and CSS Modules.
 
+![App screenshot](src/assets/screenshot.jpg?raw=true "Ignite Feed - Screenshot")
 ## How to run
 
 ```bash
