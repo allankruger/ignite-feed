@@ -1,5 +1,6 @@
 import { format, formatDistanceToNow } from "date-fns";
 import { ChangeEvent, FormEvent, useState } from "react";
+import { v4 as uuidv4 } from "uuid";
 import { Avatar } from "../Avatar";
 import { Comment } from "../Comment";
 import styles from "./styles.module.css";
@@ -67,10 +68,10 @@ export function Post({ author, publishedAt, content }: PostProps) {
       <div className={styles.content}>
         {content.map((line) => {
           if (line.type === "paragraph") {
-            return <p key={line.content}>{line.content}</p>;
+            return <p key={uuidv4()}>{line.content}</p>;
           } else if (line.type === "hyperlink") {
             return (
-              <p key={line.content}>
+              <p key={uuidv4()}>
                 <a href="#">{line.content}</a>
               </p>
             );
@@ -98,7 +99,7 @@ export function Post({ author, publishedAt, content }: PostProps) {
         {comments.map((comment) => {
           return (
             <Comment
-              key={comment}
+              key={uuidv4()}
               content={comment}
               onDeleteComment={deleteComment}
             />
