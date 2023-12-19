@@ -9,6 +9,7 @@ interface CommentProps {
 }
 
 export function Comment({ content, onDeleteComment }: CommentProps) {
+  const [hasLiked, setHasLiked] = useState(false);
   const [likeCount, setLikeCount] = useState(0);
 
   function handleDeleteComment() {
@@ -16,7 +17,13 @@ export function Comment({ content, onDeleteComment }: CommentProps) {
   }
 
   function handleLike() {
-    setLikeCount(likeCount + 1);
+    if (!hasLiked) {
+      setLikeCount(likeCount + 1);
+      setHasLiked(true);
+    } else {
+      setLikeCount(likeCount - 1);
+      setHasLiked(false);
+    }
   }
 
   return (
