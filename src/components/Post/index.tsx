@@ -15,7 +15,9 @@ export interface PostProps {
 }
 
 export function Post({ author, publishedAt, content }: PostProps) {
-  const [comments, setComments] = useState(["This comment is set inside the state, that's why it is always here."]);
+  const [comments, setComments] = useState([
+    "This comment is set inside the state, that's why it is always here.",
+  ]);
   const [newCommentText, setNewCommentText] = useState("");
 
   const formattedPublishingDate = format(publishedAt, "LLL do h':'mmbbb");
@@ -69,7 +71,7 @@ export function Post({ author, publishedAt, content }: PostProps) {
           } else if (line.type === "hyperlink") {
             return (
               <p key={line.content}>
-                <a href="">{line.content}</a>
+                <a href="#">{line.content}</a>
               </p>
             );
           }
