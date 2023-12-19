@@ -1,16 +1,19 @@
 import { format, formatDistanceToNow } from "date-fns";
 import { ThumbsUp, Trash } from "phosphor-react";
+import { v4 as uuidv4 } from "uuid";
 import { useState } from "react";
 import { Avatar } from "../Avatar";
 import styles from "./styles.module.css";
 
 interface CommentProps {
+  id: string;
   content: string;
   publishedAt: Date;
   onDeleteComment: (comment: string) => void;
 }
 
 export function Comment({
+  id,
   content,
   publishedAt,
   onDeleteComment,
@@ -23,7 +26,7 @@ export function Comment({
   });
 
   function handleDeleteComment() {
-    onDeleteComment(content);
+    onDeleteComment(id);
   }
 
   function handleLike() {

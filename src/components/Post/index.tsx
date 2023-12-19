@@ -15,14 +15,10 @@ export interface PostProps {
   content: { type: "paragraph" | "hyperlink"; content: string }[];
 }
 
-export interface CommentProps {
-  date: Date;
-  content: string;
-}
-
 const commentsArray = [
   {
-    date: new Date("2022-05-03 20:00:00"),
+    id: uuidv4(),
+    publishedAt: new Date("2022-05-03 20:00:00"),
     content:
       "This comment is set inside the state, that's why it is always here.",
   },
@@ -40,7 +36,10 @@ export function Post({ author, publishedAt, content }: PostProps) {
   function handleCreateNewComment(event: FormEvent) {
     event.preventDefault();
     const date = new Date(Date.now());
-    setComments([...comments, { date: date, content: newCommentText }]);
+    setComments([
+      ...comments,
+      { id: uuidv4(), publishedAt: date, content: newCommentText },
+    ]);
     setNewCommentText("");
   }
 
@@ -50,7 +49,7 @@ export function Post({ author, publishedAt, content }: PostProps) {
 
   function deleteComment(commentToDelete: string) {
     const newComments = comments.filter((comment) => {
-      return comment !== commentToDelete;
+      return comment.id !== commentToDelete;
     });
 
     setComments(newComments);
@@ -111,10 +110,11 @@ export function Post({ author, publishedAt, content }: PostProps) {
         {comments.map((comment) => {
           return (
             <Comment
-              key={uuidv4()}
+              key={comment.id}
+              id={comment.id}
               content={comment.content}
               onDeleteComment={deleteComment}
-              publishedAt={comment.date}
+              publishedAt={comment.publishedAt}
             />
           );
         })}
