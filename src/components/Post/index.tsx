@@ -15,10 +15,21 @@ export interface PostProps {
   content: { type: "paragraph" | "hyperlink"; content: string }[];
 }
 
+export interface CommentProps {
+  date: Date;
+  content: string;
+}
+
+const commentsArray = [
+  {
+    date: new Date("2022-05-03 20:00:00"),
+    content:
+      "This comment is set inside the state, that's why it is always here.",
+  },
+];
+
 export function Post({ author, publishedAt, content }: PostProps) {
-  const [comments, setComments] = useState([
-    "This comment is set inside the state, that's why it is always here.",
-  ]);
+  const [comments, setComments] = useState(commentsArray);
   const [newCommentText, setNewCommentText] = useState("");
 
   const formattedPublishingDate = format(publishedAt, "LLL do h':'mmbbb");
@@ -28,7 +39,8 @@ export function Post({ author, publishedAt, content }: PostProps) {
 
   function handleCreateNewComment(event: FormEvent) {
     event.preventDefault();
-    setComments([...comments, newCommentText]);
+    const date = new Date(Date.now());
+    setComments([...comments, { date: date, content: newCommentText }]);
     setNewCommentText("");
   }
 
@@ -100,8 +112,9 @@ export function Post({ author, publishedAt, content }: PostProps) {
           return (
             <Comment
               key={uuidv4()}
-              content={comment}
+              content={comment.content}
               onDeleteComment={deleteComment}
+              publishedAt={comment.date}
             />
           );
         })}
